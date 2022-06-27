@@ -13,6 +13,21 @@ message Balance {
   int32 amount = 1;
 }
 
-service BankService {
-  rpc getBalance(BalanceCheckRequest) returns (Balance);
+message WithdrawRequest {
+  int32 account_number = 1;
+  int32 amount = 2;
 }
+
+message Money {
+  int32 value = 1;
+}
+
+service BankService {
+  //Unary
+  rpc getBalance(BalanceCheckRequest) returns (Balance);
+
+  //server-side streaming
+  rpc withdraw(WithdrawRequest) returns (stream Money);
+
+}
+
