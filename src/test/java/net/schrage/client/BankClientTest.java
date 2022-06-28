@@ -3,10 +3,8 @@ package net.schrage.client;
 import com.google.common.util.concurrent.Uninterruptibles;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
-import net.schrage.models.Balance;
-import net.schrage.models.BalanceCheckRequest;
-import net.schrage.models.BankServiceGrpc;
-import net.schrage.models.WithdrawRequest;
+import io.grpc.stub.StreamObserver;
+import net.schrage.models.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -56,6 +54,19 @@ public class BankClientTest {
     this.nonBlockingStub.withdraw(withdrawRequest, new MoneyStreamingResponse(latch));
     latch.await();
     //Uninterruptibles.sleepUninterruptibly(4, TimeUnit.SECONDS);
+  }
+
+  @Test
+  public void cashStreamingRequest() throws InterruptedException {
+    CountDownLatch latch = new CountDownLatch(1);
+    StreamObserver<DepositRequest> streamObserver =
+        this.nonBlockingStub.cashDeposit(new BalanceStreamObserver(latch));
+    for (int i = 0; i < 10; i++) {
+      DepositRequest depositRequest = DepositRequest.newBuilder().setAccountNumber(8).setAmount(10).build();
+      streamObserver.onNext(depositRequest);
+    }
+    streamObserver.onCompleted();
+    latch.await();
   }
 
 
