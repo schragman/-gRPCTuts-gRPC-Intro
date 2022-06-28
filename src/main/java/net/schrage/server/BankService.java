@@ -44,4 +44,5 @@ public class BankService extends BankServiceGrpc.BankServiceImplBase{
   public StreamObserver<DepositRequest> cashDeposit(StreamObserver<Balance> responseObserver) {
     return new CashStreamingRequest(responseObserver);
   }
+
 }
