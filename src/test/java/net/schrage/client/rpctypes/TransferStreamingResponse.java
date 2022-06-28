@@ -1,4 +1,4 @@
-package net.schrage.client;
+package net.schrage.client.rpctypes;
 
 import io.grpc.stub.StreamObserver;
 import net.schrage.models.TransferResponse;

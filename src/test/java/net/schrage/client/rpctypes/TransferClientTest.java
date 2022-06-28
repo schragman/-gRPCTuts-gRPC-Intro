@@ -1,9 +1,8 @@
-package net.schrage.client;
+package net.schrage.client.rpctypes;
 
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.stub.StreamObserver;
-import net.schrage.models.BankServiceGrpc;
 import net.schrage.models.TransferRequest;
 import net.schrage.models.TransferServiceGrpc;
 import org.junit.jupiter.api.BeforeAll;

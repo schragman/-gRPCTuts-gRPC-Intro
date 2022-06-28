@@ -1,4 +1,4 @@
-package net.schrage.server;
+package net.schrage.server.rpctypes;
 
 import io.grpc.stub.StreamObserver;
 import net.schrage.models.Balance;
