@@ -4,7 +4,6 @@ import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
 import net.schrage.models.*;
 import net.schrage.server.rpctypes.AccountDatabase;
-import net.schrage.server.rpctypes.CashStreamingRequest;
 
 public class BankService extends BankServiceGrpc.BankServiceImplBase{
 
